@@ -1,0 +1,820 @@
+:root {
+    --pink: #e84393;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    overflow: auto;
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+.heading {
+    text-align: center;
+    font-size: 4rem;
+    color: #333;
+    padding: 1rem;
+    margin: 2rem 0;
+    background-color: rgba(255, 51, 153, 0.05);
+}
+
+.heading span {
+    color: var(--pink);
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 5rem;
+    background: #333;
+    color: #fff;
+    padding: 0.9rem 3.5rem;
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn:hover {
+    background: var(--pink);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 2rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+    font-size: 3rem;
+    color: #333;
+    font-weight: bolder;
+}
+
+header .logo span {
+    color: var(--pink);
+}
+
+header .navbar a {
+    font-size: 2rem;
+    padding: 0 1.5rem;
+    color: #666;
+}
+
+header .navbar a:hover {
+    color: var(--pink);
+}
+
+header .icons a {
+    font-size: 2.5rem;
+    color: #333;
+    margin-left: 1.5rem;
+}
+
+/* Cart Icon Container */
+.cart-icon-container {
+    display: inline-flex; /* Use flexbox to align items */
+    align-items: center; /* Vertically center the icon and count */
+    position: relative; /* Required for positioning the count */
+}
+
+.icons .fa-shopping-cart {
+    position: relative; /* Required for positioning the count */
+}
+
+.icons .fa-shopping-cart + span {
+    position: absolute; /* Position the count absolutely */
+    top: 50%; /* Adjust vertical position */
+    right: 130px; /* Adjust horizontal position */
+    background-color: var(--pink); /* Pink background for the count */
+    color: #fff; /* White text for the count */
+    width: 20px; /* Fixed width */
+    height: 20px; /* Display as a circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Make it circular */
+    font-size: 1.2rem; /* Adjust font size */
+}
+
+header #toggler {
+    display: none;
+}
+
+header .fa-bars {
+    font-size: 3rem;
+    color: #333;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    border: 0.1rem solid rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+/* Cart Tab Styling */
+.cartTab {
+    width: 400px;
+    background-color: #fff;
+    color: #333;
+    position: fixed;
+    top: 0;
+    right: -400px;
+    bottom: 0;
+    display: grid;
+    grid-template-rows: 70px 1fr 100px; /* Increase the height for buttons */
+    transition: 0.5s;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+body.showCart .cartTab {
+    right: 0;
+}
+
+.cartTab h1 {
+    padding: 20px;
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+}
+
+.cartTab .listCart {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.cartTab .listCart .item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.cartTab .listCart .item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.cartTab .listCart .item .name {
+    flex: 1;
+    font-size: 1.6rem;
+}
+
+.cartTab .listCart .item .totalPrice {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--pink);
+}
+
+.cartTab .listCart .item .quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cartTab .listCart .item .quantity span {
+    font-size: 1.6rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.cartTab .listCart .item .quantity span.minus,
+.cartTab .listCart .item .quantity span.plus {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    border-radius: 50%;
+    color: #333;
+}
+
+.cartTab .listCart .item .quantity span.minus:hover,
+.cartTab .listCart .item .quantity span.plus:hover {
+    background-color: var(--pink);
+    color: #fff;
+}
+
+/* Cart Buttons Styling */
+.cartTab .btn {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background-color: #fff; /* Ensure the button container has a white background */
+}
+
+.cartTab .btn button {
+    flex: 1; /* Make buttons take equal space */
+    padding: 10px;
+    font-size: 1.6rem;
+    border: 1px solid #ddd; /* Add a light border */
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff; /* White background */
+    color: #333; /* Dark text */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+}
+
+.cartTab .btn .close {
+    background-color: #eee;
+    color: #333;
+}
+
+.cartTab .btn .close:hover {
+    background-color: var(--pink);
+}
+
+.cartTab .btn .clearAll {
+    background-color: #ff4d4d;
+    color: #fff;
+}
+
+.cartTab .btn .clearAll:hover {
+    background-color: #e60000;
+}
+
+.cartTab .btn .checkOut {
+    background-color: var(--pink);
+    color: #fff;
+}
+
+.cartTab .btn .checkOut:hover {
+    background-color: #d6336c;
+}
+/* Total Price Styling */
+.cartTab .total {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    text-align: right;
+}
+
+.cartTab .total h3 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.cartTab .total h3 span {
+    color: var(--pink);
+    font-weight: bold;
+}
+/* Home Section */
+.home {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    background: url(/Photo/clothing+homepage/homepage/h3.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.home .content {
+    max-width: 50rem;
+}
+
+.home .content h3 {
+    color: #fff;
+    font-size: 6rem;
+    padding: 1rem 0;
+    line-height: 1.5;
+}
+
+.home .content span {
+    font-size: 3.5rem;
+    color: var(--pink);
+    padding: 1rem 0;
+    line-height: 1.5;
+}
+
+.home .content p {
+    font-size: 1.5rem;
+    color: #333;
+    padding: 1rem 0;
+    line-height: 1.5;
+}
+
+/* About Section */
+.about .row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+    padding-bottom: 3rem;
+}
+
+.about .row .video-container {
+    flex: 1 1 40rem;
+    position: relative;
+}
+
+.about .row .video-container video {
+    width: 100%;
+    border: 1.5rem solid #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem rgba(0, 0, 0, 0.1);
+    height: 100%;
+    object-fit: cover;
+}
+
+.about .row .video-container h3 {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%);
+    font-size: 3rem;
+    background: #fff;
+    width: 100%;
+    padding: 1rem 2rem;
+    text-align: center;
+    mix-blend-mode: screen;
+    left: 49%;
+}
+
+.about .row .content {
+    flex: 1 1 40rem;
+}
+
+.about .row .content h3 {
+    font-size: 3rem;
+    color: #333;
+}
+
+.about .row .content p {
+    font-size: 1.5rem;
+    color: #999;
+    padding: 0.5rem 0;
+    padding-top: 3rem;
+}
+
+/* Icons Section */
+.icons-container {
+    background: #eee;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.icons-container .icons {
+    background: #fff;
+    border: 1rem solid rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    flex: 1 1 25rem;
+}
+
+.icons-container .icons img {
+    height: 5rem;
+    margin-right: 2rem;
+}
+
+.icons-container .icons h3 {
+    color: #333;
+    padding-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.icons-container .icons span {
+    color: #555;
+    font-size: 1.3rem;
+}
+
+/* Products Section */
+.products .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.products .box-container .box {
+    flex: 1 1 30rem;
+    box-shadow: 0 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.products .box-container .box .discount {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.7rem 1rem;
+    font-size: 2rem;
+    color: var(--pink);
+    background: rgba(255, 51, 153, 0.05);
+    z-index: 1;
+    border-radius: 0.5rem;
+}
+
+.products .box-container .box .image {
+    position: relative;
+    text-align: center;
+    padding-top: 2rem;
+    overflow: hidden;
+}
+
+.products .box-container .box .image img {
+    height: 50rem;
+}
+
+.products .box-container .box:hover .image img {
+    transform: scale(1.1);
+}
+
+.products .box-container .box .image .icons {
+    position: absolute;
+    bottom: -7rem;
+    left: 0;
+    right: 0;
+    display: flex;
+}
+
+.products .box-container .box:hover .image .icons {
+    bottom: 0;
+}
+
+.products .box-container .box .image .icons a {
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    width: 50%;
+    background: var(--pink);
+    color: #fff;
+}
+
+.products .box-container .box .image .icons .cart-btn {
+    border-left: 0.1rem solid rgba(255, 255, 255, 0.7);
+    border-right: 0.1rem solid rgba(255, 255, 255, 0.7);
+    width: 100%;
+}
+
+.products .box-container .box .image .icons a:hover {
+    background-color: #333;
+}
+
+.products .box-container .box .content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.products .box-container .box .content h3 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.products .box-container .box .content .price {
+    font-size: 2.5rem;
+    color: var(--pink);
+    font-weight: bolder;
+    padding-top: 1rem;
+}
+
+.products .box-container .box .content .price span {
+    font-size: 1.5rem;
+    color: #999;
+    font-weight: lighter;
+    text-decoration: line-through;
+}
+
+/* Woman Products Section */
+.products-woman .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.products-woman .box-container .box {
+    flex: 1 1 30rem;
+    box-shadow: 0 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.products-woman .box-container .box .discount {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.7rem 1rem;
+    font-size: 2rem;
+    color: var(--pink);
+    background: rgba(255, 51, 153, 0.05);
+    z-index: 1;
+    border-radius: 0.5rem;
+}
+
+.products-woman .box-container .box .image {
+    position: relative;
+    text-align: center;
+    padding-top: 2rem;
+    overflow: hidden;
+}
+
+.products-woman .box-container .box .image img {
+    height: 50rem;
+}
+
+.products-woman .box-container .box:hover .image img {
+    transform: scale(1.1);
+}
+
+.products-woman .box-container .box .image .icons {
+    position: absolute;
+    bottom: -7rem;
+    left: 0;
+    right: 0;
+    display: flex;
+}
+
+.products-woman .box-container .box:hover .image .icons {
+    bottom: 0;
+}
+
+.products-woman .box-container .box .image .icons a {
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    width: 50%;
+    background: var(--pink);
+    color: #fff;
+}
+
+.products-woman .box-container .box .image .icons .cart-btn {
+    border-left: 0.1rem solid rgba(255, 255, 255, 0.7);
+    border-right: 0.1rem solid rgba(255, 255, 255, 0.7);
+    width: 100%;
+}
+
+.products-woman .box-container .box .image .icons a:hover {
+    background-color: #333;
+}
+
+.products-woman .box-container .box .content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.products-woman .box-container .box .content h3 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.products-woman .box-container .box .content .price {
+    font-size: 2.5rem;
+    color: var(--pink);
+    font-weight: bolder;
+    padding-top: 1rem;
+}
+
+.products-woman .box-container .box .content .price span {
+    font-size: 1.5rem;
+    color: #999;
+    font-weight: lighter;
+    text-decoration: line-through;
+}
+
+/* Review Section */
+.review .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.review .box-container .box {
+    flex: 1 1 30rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 3rem 2rem;
+    position: relative;
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+}
+
+.review .box-container .box .fa-quote-right {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    font-size: 6rem;
+    color: #eee;
+}
+
+.review .box-container .box .stars i {
+    color: var(--pink);
+    font-size: 2rem;
+}
+
+.review .box-container .box p {
+    color: #999;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    padding-top: 2rem;
+}
+
+.review .box-container .box .user {
+    display: flex;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.review .box-container .box .user img {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.review .box-container .box .user h3 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.review .box-container .box .user span {
+    font-size: 1.5rem;
+    color: #999;
+}
+
+/* Contact Section */
+.contact .row {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.contact .row form {
+    flex: 1 1 40rem;
+    padding: 2rem 2.5rem;
+    box-shadow: 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border-radius: 0.5rem;
+}
+
+.contact .row .image {
+    flex: 1 1 40rem;
+}
+
+.contact .row .image img {
+    width: 100%;
+}
+
+.contact .row form .box {
+    padding: 1rem;
+    font-size: 1.7rem;
+    color: #333;
+    text-transform: none;
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    margin: 0.7rem 0;
+    width: 100%;
+}
+
+.contact .row form .box:focus {
+    border-color: var(--pink);
+}
+
+.contact .row form textarea {
+    height: 15rem;
+    resize: none;
+}
+
+/* Footer Section */
+.footer .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer .box-container .box {
+    flex: 1 1 1.5rem;
+}
+
+.footer .box-container .box h3 {
+    color: #333;
+    font-size: 2.5rem;
+    padding: 1rem 0;
+}
+
+.footer .box-container .box a {
+    display: block;
+    color: #666;
+    font-size: 1.5rem;
+    padding: 1rem 0;
+}
+
+.footer .box-container .box a:hover {
+    color: var(--pink);
+    text-decoration: underline;
+}
+
+.footer .box-container .box img {
+    margin-top: 1rem;
+}
+
+.footer .credit {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 2.5rem;
+    font-size: 2rem;
+    color: #333;
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+}
+
+.footer .credit span {
+    color: var(--pink);
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+    html {
+        font-size: 55%;
+    }
+    header {
+        padding: 2rem;
+    }
+    section {
+        padding: 2rem;
+    }
+    .home {
+        background-position: left;
+    }
+}
+
+@media (max-width: 768px) {
+    header .fa-bars {
+        display: block;
+    }
+    header .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #eee;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    header #toggler:checked ~ .navbar {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    header .navbar a {
+        margin: 1.5rem;
+        padding: 1.5rem;
+        background-color: #fff;
+        border: 0.1rem solid rgba(0, 0, 0, 0.1);
+        display: block;
+    }
+    .home .content {
+        font-size: 5rem;
+    }
+    .home .content h3 {
+        font-size: 2.5rem;
+    }
+    .icons-container .icons h3 {
+        font-size: 2rem;
+    }
+    .icons-container .icons span {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+    .heading {
+        font-size: 3rem;
+    }
+}
+
