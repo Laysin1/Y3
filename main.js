@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartTab = document.querySelector('.cartTab');
     const closeCart = document.querySelector('.close');
     const clearAllButton = document.querySelector('.clearAll');
-    const totalPriceElement = document.getElementById('totalPrice'); // Get the total price element
+    const totalPriceElement = document.getElementById('totalPrice');
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -22,27 +22,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 quantity: 1
             };
 
-            const existingProduct = cart.find(item => item.id === product.id);
-            if (existingProduct) {
-                existingProduct.quantity += 1;
-            } else {
-                cart.push(product);
-            }
-
-            updateCart();
-            saveCartToLocalStorage();
+            addToCart(product);
         });
     });
+
+    // Function to Add Product to Cart
+    function addToCart(product) {
+        const existingProduct = cart.find(item => item.id === product.id);
+        if (existingProduct) {
+            existingProduct.quantity += 1;
+        } else {
+            cart.push(product);
+        }
+
+        updateCart();
+        saveCartToLocalStorage();
+    }
 
     // Update Cart UI
     function updateCart() {
         cartItems.innerHTML = '';
         let totalQuantity = 0;
-        let totalPrice = 0; // Initialize total price
+        let totalPrice = 0;
 
         cart.forEach(item => {
             totalQuantity += item.quantity;
-            totalPrice += item.price * item.quantity; // Calculate total price
+            totalPrice += item.price * item.quantity;
 
             const cartItem = document.createElement('div');
             cartItem.classList.add('item');
@@ -63,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         cartCount.innerText = totalQuantity;
-        totalPriceElement.innerText = totalPrice.toFixed(2); // Update total price display
+        totalPriceElement.innerText = totalPrice.toFixed(2);
 
         // Add event listeners for quantity changes
         const minusButtons = document.querySelectorAll('.minus');
@@ -104,9 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Clear All Functionality
     clearAllButton.addEventListener('click', () => {
-        cart = []; // Empty the cart array
-        updateCart(); // Update the cart UI
-        saveCartToLocalStorage(); // Save the empty cart to localStorage
+        cart = [];
+        updateCart();
+        saveCartToLocalStorage();
     });
 
     // Save Cart to Local Storage

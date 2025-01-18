@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - BlackPink</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section (Same as index.html) -->
+    <header>
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+        <a href="index.html" class="logo">Black<span>Pink</span></a>
+        <nav class="navbar">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#products-man">Man</a>
+            <a href="index.html#products-woman">Woman</a>
+            <a href="index.html#review">Review</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+        <div class="icons">
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-user"></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+            <span>0</span>
+        </div>
+    </header>
+
+    <!-- Product Details Section -->
+    <section class="product-details">
+        <!-- Back Button -->
+        <div class="back-button">
+            <button class="btn" id="backButton">Back to Products</button>
+        </div>
+
+        <div class="details-container">
+            <div class="product-image">
+                <img id="productImage" src="" alt="Product Image">
+            </div>
+            <div class="product-info">
+                <h1 id="productName">Product Name</h1>
+                <div class="price" id="productPrice">$12.99 <span>$15.99</span></div>
+                <p id="productDescription">
+                    This is a detailed description of the product. It includes information about the material, size, and care instructions.
+                </p>
+                <div class="quantity">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1">
+                </div>
+                <button class="btn" id="addToCartBtn">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section (Same as index.html) -->
+    <section class="footer">
+        <div class="box-container">
+            <!-- Footer content from index.html -->
+        </div>
+        <div class="credit">Created by Team <span>ITE</span> | All Rights Reserved</div>
+    </section>
+
+    <script src="main.js"></script>
+    <script src="product-details.js"></script> <!-- New JS file for product details -->
+</body>
+</html>
