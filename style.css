@@ -780,7 +780,74 @@ body.showCart .cartTab {
 .back-button .btn:hover {
     background-color: #d6336c; /* Darker pink on hover */
 }
+/* Favorites Section */
+.favorites .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
 
+.favorites .box-container .box {
+    flex: 1 1 30rem;
+    box-shadow: 0 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.favorites .box-container .box .image img {
+    height: 30rem; /* Adjust height to match regular product display */
+    width: 100%;
+    object-fit: cover;
+}
+
+.favorites .box-container .box .content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.favorites .box-container .box .content h3 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.favorites .box-container .box .content .price {
+    font-size: 2.5rem;
+    color: var(--pink);
+    font-weight: bolder;
+    padding-top: 1rem;
+}
+
+/* Back Button Styling */
+.back-button {
+    margin-bottom: 2rem;
+    text-align: left;
+    padding: 0 2rem;
+}
+
+.back-button .btn {
+    background-color: var(--pink);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    font-size: 1.6rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.back-button .btn:hover {
+    background-color: #d6336c;
+}
+.favorite-btn {
+    size: 30px;
+    color: #ccc; /* Default color (unfavorited) */
+    transition: color 0.3s ease;
+}
+
+.favorite-btn.active {
+    color: var(--pink); /* Pink color when favorited */
+}
 /* Product Details Section */
 .product-details {
     padding: 2rem 9%;
@@ -866,70 +933,24 @@ body.showCart .cartTab {
 }
 
 /* Responsive Styles for Product Details */
-@media (max-width: 991px) {
+/* Product Details Section - Mobile Responsiveness */
+@media (max-width: 768px) {
     .product-details {
-        padding: 2rem;
+        padding: 1rem;
     }
 
     .details-container {
-        flex-direction: column; /* Stack image and info vertically on smaller screens */
-        align-items: center;
-        text-align: center;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
     }
 
-    .product-info {
-        max-width: 100%; /* Allow the info section to take full width */
-    }
-
-    .quantity {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 768px) {
-    .back-button {
-        text-align: center; /* Center the button on smaller screens */
-    }
-
-    .back-button .btn {
-        font-size: 1.4rem; /* Reduce font size for smaller screens */
-        padding: 0.6rem 1.5rem; /* Adjust padding for smaller screens */
+    .product-image img {
+        max-width: 100%;
     }
 
     .product-info h1 {
-        font-size: 2.5rem; /* Reduce font size for smaller screens */
-    }
-
-    .product-info .price {
         font-size: 2rem;
-    }
-
-    .product-info p {
-        font-size: 1.4rem;
-    }
-
-    .quantity label {
-        font-size: 1.6rem;
-    }
-
-    .quantity input {
-        font-size: 1.4rem;
-    }
-
-    #addToCartBtn {
-        font-size: 1.6rem;
-        padding: 1rem 2rem;
-    }
-}
-
-@media (max-width: 450px) {
-    .back-button .btn {
-        font-size: 1.2rem; /* Further reduce font size for mobile */
-        padding: 0.5rem 1rem; /* Adjust padding for mobile */
-    }
-
-    .product-info h1 {
-        font-size: 2rem; /* Further reduce font size for mobile */
     }
 
     .product-info .price {
@@ -937,20 +958,41 @@ body.showCart .cartTab {
     }
 
     .product-info p {
-        font-size: 1.2rem;
-    }
-
-    .quantity label {
         font-size: 1.4rem;
     }
 
     .quantity input {
+        width: 50px;
+        font-size: 1.4rem;
+    }
+
+    #addToCartBtn {
+        font-size: 1.6rem;
+        padding: 0.8rem 2rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .product-info h1 {
+        font-size: 1.8rem;
+    }
+
+    .product-info .price {
+        font-size: 1.6rem;
+    }
+
+    .product-info p {
+        font-size: 1.2rem;
+    }
+
+    .quantity input {
+        width: 40px;
         font-size: 1.2rem;
     }
 
     #addToCartBtn {
         font-size: 1.4rem;
-        padding: 0.8rem 1.5rem;
+        padding: 0.6rem 1.5rem;
     }
 }
 
@@ -1036,3 +1078,89 @@ body.showCart .cartTab {
     }
 }
 
+/* Favorites Section - Mobile Responsive */
+@media (max-width: 768px) {
+    /* Favorites Container */
+    .favorites .box-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem; /* Reduce gap for smaller screens */
+    }
+
+    /* Favorites Product Box */
+    .favorites .box-container .box {
+        flex: 1 1 100%; /* Full width on mobile */
+        margin-bottom: 1rem; /* Add space between boxes */
+    }
+
+    /* Favorites Product Image */
+    .favorites .box-container .box .image img {
+        height: 20rem; /* Adjust height for mobile */
+        width: 100%;
+        object-fit: cover;
+    }
+
+    /* Favorites Product Content */
+    .favorites .box-container .box .content {
+        padding: 1rem; /* Reduce padding for mobile */
+    }
+
+    .favorites .box-container .box .content h3 {
+        font-size: 2rem; /* Reduce font size for mobile */
+    }
+
+    .favorites .box-container .box .content .price {
+        font-size: 2rem; /* Reduce font size for mobile */
+    }
+
+    /* Back Button */
+    .back-button {
+        text-align: center; /* Center the back button on mobile */
+        margin-bottom: 1rem; /* Add space below the button */
+    }
+
+    .back-button .btn {
+        font-size: 1.4rem; /* Reduce font size for mobile */
+        padding: 0.6rem 1.5rem; /* Adjust padding for mobile */
+    }
+}
+
+@media (max-width: 450px) {
+    /* Further adjustments for very small screens */
+    .favorites .box-container .box .image img {
+        height: 15rem; /* Further reduce height for very small screens */
+    }
+
+    .favorites .box-container .box .content h3 {
+        font-size: 1.8rem; /* Further reduce font size */
+    }
+
+    .favorites .box-container .box .content .price {
+        font-size: 1.8rem; /* Further reduce font size */
+    }
+
+    .back-button .btn {
+        font-size: 1.2rem; /* Further reduce font size for very small screens */
+        padding: 0.5rem 1rem; /* Further adjust padding */
+    }
+}
+
+@media (max-width: 768px) {
+    header .icons .fa-shopping-cart + span {
+        top: -8px; /* Adjust vertical position for mobile */
+        right: -8px; /* Adjust horizontal position for mobile */
+        width: 18px; /* Slightly smaller for mobile */
+        height: 18px;
+        font-size: 1rem; /* Smaller font size for mobile */
+    }
+}
+
+@media (max-width: 450px) {
+    header .icons .fa-shopping-cart + span {
+        top: 28px; /* Further adjust for very small screens */
+        right: 9px;
+        width: 16px;
+        height: 16px;
+        font-size: 0.9rem; /* Further reduce font size */
+    }
+}

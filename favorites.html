@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites - BlackPink</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+        <a href="index.html" class="logo">Black<span>Pink</span></a>
+        <nav class="navbar">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#products-man">Man</a>
+            <a href="index.html#products-woman">Woman</a>
+            <a href="index.html#review">Review</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="favorites.html">Favorites</a>
+        </nav>
+        <div class="icons">
+            <a href="favorites.html" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-user"></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+            <span>0</span>
+        </div>
+    </header>
+
+    <!-- Favorites Section -->
+    <section class="products" id="favorites"> <!-- Use the same class as regular products -->
+        <h1 class="heading">Your <span>Favorites</span></h1>
+        <!-- Back Button -->
+        <div class="back-button">
+            <button class="btn" id="backButton">Back to Products</button>
+        </div>
+        <div class="box-container" id="favoritesContainer">
+            <!-- Favorited products will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Quick Links</h3>
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#products-man">Man</a>
+                <a href="index.html#products-woman">Woman</a>
+                <a href="index.html#review">Review</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <div class="box">
+                <h3>Extra Links</h3>
+                <a href="#">My Account</a>
+                <a href="#">My Order</a>
+                <a href="#">My Favorite</a>
+            </div>
+            <div class="box">
+                <h3>Locations</h3>
+                <a href="#">Cambodia</a>
+                <a href="#">USA</a>
+                <a href="#">China</a>
+                <a href="#">Thailand</a>
+                <a href="#">Vietnam</a>
+            </div>
+            <div class="box">
+                <h3>Contact Info</h3>
+                <a href="#">+855 87497386</a>
+                <a href="#">black_pink@gmail.com</a>
+                <a href="#">Phnom Penh, Cambodia</a>
+                <img src="Photo/cards.png" alt="">
+            </div>
+        </div>
+        <div class="credit">Created by Team <span>ITE</span> | All Rights Reserved</div>
+    </section>
+
+    <script src="favorites.js"></script>
+</body>
+</html>

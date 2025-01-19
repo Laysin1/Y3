@@ -131,3 +131,67 @@ document.addEventListener('DOMContentLoaded', () => {
         cartTab.style.right = '-400px';
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const favoriteButtons = document.querySelectorAll('.favorite-btn');
+    const favoritesCount = document.querySelector('.favorites-count');
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    // Function to update favorites count in the header
+    function updateFavoritesCount() {
+        if (favoritesCount) {
+            favoritesCount.innerText = favorites.length;
+        }
+    }
+
+    // Function to check if a product is favorited
+    function isProductFavorited(productId) {
+        return favorites.some(item => item.id === productId);
+    }
+
+    // Function to add or remove a product from favorites
+    function toggleFavorite(product) {
+        const productId = product.id;
+        const isFavorite = isProductFavorited(productId);
+
+        if (isFavorite) {
+            // Remove from favorites
+            favorites = favorites.filter(item => item.id !== productId);
+        } else {
+            // Add to favorites
+            favorites.push(product);
+        }
+
+        // Save to localStorage
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        updateFavoritesCount();
+    }
+
+    // Initialize favorite buttons
+    favoriteButtons.forEach(button => {
+        const productId = button.dataset.id;
+
+        // Highlight the heart icon if the product is already favorited
+        if (isProductFavorited(productId)) {
+            button.classList.add('active');
+        }
+
+        // Toggle favorite on click
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const productBox = button.closest('.box');
+            const product = {
+                id: productId,
+                name: productBox.querySelector('.content h3').innerText,
+                price: parseFloat(productBox.querySelector('.content .price').innerText.replace('$', '')),
+                image: productBox.querySelector('.image img').src,
+            };
+
+            toggleFavorite(product); // Add or remove from favorites
+            button.classList.toggle('active'); // Toggle the active class
+        });
+    });
+
+    // Initialize favorites count on page load
+    updateFavoritesCount();
+});
