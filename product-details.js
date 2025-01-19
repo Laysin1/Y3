@@ -153,10 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'index.html';
     }
        // Back Button Functionality
-       const backButton = document.getElementById('backButton');
-       backButton.addEventListener('click', () => {
-           window.history.back(); // Go back to the previous page
-       });
+
     // Function to add product to cart
     function addToCart(product, quantity) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -185,4 +182,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
         document.querySelector('.icons span').innerText = totalQuantity;
     }
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const backButton = document.getElementById('backButton');
+    backButton.addEventListener('click', () => {
+        window.history.back(); // Simply go back to the previous page
+    });
 });
